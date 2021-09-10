@@ -21,90 +21,85 @@ public class Variabledemo {
 
      */
     public static void main(String[] args) {
-        int numberInt1 = 0;
-        int numberInt2 = 0;
-        double numberDouble1 = 0;
-        double numberDouble2 = 0;
-        int totalInt = 0;
-        double totalDouble = 0;
-        String mathDouble = "";
-        String mathTermDouble = "added";
-        boolean isDone = false;
-        String firstName;
-        String notesInput = "";
-        String notesOutput = "";
-        int noteCount = 0;
+        int numberInt1 = 0, numberInt2 = 0, totalInt = 0;
+        double numberDouble1 = 0, numberDouble2 = 0, totalDouble = 0, wrongDouble = 0;
+        String mathDouble = "", mathTermDouble = "added";
+        String firstName, secondName, namePronouns;
+        String fallDown = "stairs", fallMethod = "stepped";
+        String fallMeasurement = "inches", lateTimeMeasurement = "minutes";
+        String startingPlace = "home";
+        
         Scanner sc = new Scanner(System.in);
         
-        System.out.println("Please Enter your first name.\n");
+        System.out.println("Please Give me a name.\n");
         firstName = sc.nextLine();
-        System.out.println("Nice to meet you "+firstName+"!\n");
-        System.out.print("What is your favorite number?\n");
+        
+        System.out.println("What is this persons pronouns he/she \n");
+        namePronouns = sc.next();
+        
+        System.out.println("Pick something that you could fall down from.\n");
+        fallDown = sc.next();
+        
+        System.out.println("How do you get down from there ( stepped, climbed, jumped)\nMake sure it ends with ED like climbed or jumped.\n");
+        fallMethod = sc.next();
+        
+        System.out.print("Now Pick a number\n");
         numberInt1 = sc.nextInt();
-        System.out.println("\n"+numberInt1+" is a great choice for a number!\n");
         
-        System.out.print("Now what is your least favorite number?\n");
+        System.out.print("Next pick another number that is lower than the first number.\n");
         numberInt2 = sc.nextInt();
-        System.out.println(numberInt2+" isn't so great of a number.\n");
-        
         totalInt = numberInt1 - numberInt2;
+        sc.nextLine();
+        System.out.println("Choose a place you can be at.\n");
+        startingPlace = sc.nextLine();
+        
         System.out.print("Pick a number with a decimal point (required)\n");
         numberDouble1 = sc.nextDouble();
         
         
         System.out.print("Now pick another decimal point (required)\n");
         numberDouble2 = sc.nextDouble();
-        System.out.println("");
-        System.out.println("What would you like to do with these two numbers? [Add, Subtract, Multiply, Divide]\n");
+        
+        System.out.println("Now Pick a math operation [Add, Subtract, Multiply, Divide]\n");
         mathDouble = sc.next();
         switch (mathDouble.toLowerCase()){
             case "add":
                 totalDouble = numberDouble1 + numberDouble2;
+                wrongDouble = numberDouble1 * numberDouble2;
                 mathTermDouble = "added to";
                 break;
             case "subtract":
                 totalDouble = numberDouble1 - numberDouble2;
+                wrongDouble = numberDouble1 + numberDouble2;
                 mathTermDouble = "subtracted from";
                 break;
             case "multiply":
                 totalDouble = numberDouble1 * numberDouble2;
+                wrongDouble = numberDouble1 / numberDouble2;
                 mathTermDouble = "multiplied by";
                 break;
             case "divide":
                 totalDouble = numberDouble1 / numberDouble2;
+                wrongDouble = numberDouble1 * numberDouble2;
                 mathTermDouble = "divided by";
                 break;
         }
+        System.out.println("Pick a measurement of distance (Centimeters, Inches, Feet, Miles)\n");
+        fallMeasurement = sc.next();
         
-       
-        System.out.println("\nHey "+firstName+",\nyour favorite number ("+numberInt1+") "
-                + "subtracted by your least favorite number ("+numberInt2+") is "+totalInt+"!\n"
-                +"I saw that you chose to use the number ("+numberDouble1+") and ("+numberDouble2+")"
-                + ",\nthose two "+mathTermDouble+" each other is ("+totalDouble+").\n");
+        System.out.println("Pick a measurement of time (Days, Hours, Minutes, Seconds) ending with an S\n");
+        lateTimeMeasurement = sc.next();
         
-        while (!isDone || noteCount < 2 ){
-            if (noteCount > 2){
-                System.out.println("Would you like to be done and stop adding notes? [True / False]\n");
-                isDone = sc.nextBoolean();
-                sc.nextLine();
-            }
-            if (noteCount == 0){
-                sc.nextLine();
-            }
-            if (!isDone){
-                System.out.println("Please add to your notes here! ["+noteCount+" Notes] [3 Required]\n");
-                notesInput = sc.nextLine();
-            }
-            if (!isDone || noteCount < 2 && notesInput != "" && !isDone){
-                System.out.println("\n "
-                        + "Added \""+notesInput+"\" to the notes."
-                        + "\n");
-                notesOutput += notesInput + "\n";
-                noteCount++;
-            }
-        }
+        System.out.println("Pick a second name.\n");
+        secondName = sc.next();
+        
+        System.out.println("\n"+firstName+" woke up one morning at "+startingPlace+",\nwhen "+namePronouns
+                +" got up and started getting ready for work "+namePronouns+" "+fallMethod+" Down A whole "+totalInt+" "+fallMeasurement+" of "+fallDown+". "
+                + "When "+namePronouns+" got to work, "+secondName+" (his boss) asked him \"Do you know how late you are?"
+                + "\nYou are a whole "+wrongDouble+" "+lateTimeMeasurement+" late to work!"+"\"\n"
+                + "Sadly, "+secondName+" must not know how to do proper math, \nSo you decided to tell him that "+numberDouble1+" "+mathTermDouble+" "+numberDouble2+" is actually "+totalDouble+"!");
+        
         System.out.println("Done Scanning for questions!\n");
-        System.out.println("Here are your notes: \n"+notesOutput);
     }
     
 }
